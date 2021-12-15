@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\GameController;
+use App\Http\Controllers\LobbyController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,6 +26,9 @@ Route::get('/dashboard', function () {
 Route::get('/join', function () {
     return view('join');
 })->middleware(['auth'])->name('join');
+
+Route::get('/lobby/{gameId}', [LobbyController::class, 'show'])->middleware(['auth'])->name('lobby');
+Route::get('/game/{gameId}', [GameController::class, 'show'])->middleware(['auth'])->name('game');
 
 
 require __DIR__.'/auth.php';

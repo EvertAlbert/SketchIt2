@@ -1,0 +1,35 @@
+.gameWrapper {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.game {
+    background-color: red;
+    width: 100%;
+    margin-right: 1rem;
+}
+
+.gameChat {
+    min-height: 50vh;
+    max-height: 50vh;
+    background-color: #FFF;
+    overflow: auto;
+    margin-bottom: 1rem;
+}
+
+.messageInputForm {
+    background-color: #FFF;
+    display: flex;
+    flex-direction: row;
+}
+
+.messageInput {
+    font-size: 1rem;
+    border: none;
+}
+
+.messageSubmit {
+    background: green;
+    padding: .5rem;
+}

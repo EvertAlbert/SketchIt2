@@ -32231,6 +32231,10 @@ h3 {
   background-color: #A88D00;
 }
 
+.warningText {
+  color:#FF0000;
+}
+
 .gameWrapper {
   display: flex;
   justify-content: space-between;
@@ -32238,7 +32242,7 @@ h3 {
 }
 
 .game {
-  background-color: red;
+  background-color: #FFF;
   width: 100%;
   margin-right: 1rem;
 }
@@ -32249,9 +32253,10 @@ h3 {
   background-color: #FFF;
   overflow: auto;
   margin-bottom: 1rem;
+  padding: .5rem;
 }
 
-.messageInputForm {
+.messageInputWrapper {
   background-color: #FFF;
   display: flex;
   flex-direction: row;
@@ -32263,7 +32268,7 @@ h3 {
 }
 
 .messageSubmit {
-  background: green;
+  background: #FFD500;
   padding: .5rem;
 }
 

@@ -28,7 +28,10 @@ Route::get('/join', function () {
 })->middleware(['auth'])->name('join');
 
 Route::get('/lobby/{gameId}', [LobbyController::class, 'show'])->middleware(['auth'])->name('lobby');
-Route::get('/game/{gameId}', [GameController::class, 'show'])->middleware(['auth'])->name('game');
+//Route::get('/game/{gameId}', [GameController::class, 'show'])->middleware(['auth'])->name('game');
+Route::get('/game', function () {
+    return view('game');
+})->middleware(['auth'])->name('game');
 
 
 require __DIR__.'/auth.php';

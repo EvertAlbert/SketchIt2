@@ -8,10 +8,13 @@
                 <div>
                     <h3><b id="app">Gamechat</b></h3>
                     <ul class="gameChat" id="chatList">
+                        <li>Joining chat...</li>
                     </ul>
                 </div>
-                <form class="messageInputForm">
-                    <input type="text" placeholder="Message chat" class="messageInput">
+                <form class="messageInputWrapper">
+                    <label>
+                        <input type="text" placeholder="Message chat" class="messageInput">
+                    </label>
                     <input type="submit" value="Send" class="messageSubmit">
                 </form>
             </section>

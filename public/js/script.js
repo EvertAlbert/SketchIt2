@@ -1,14 +1,16 @@
 document.addEventListener("DOMContentLoaded", init);
 
 let chat = document.querySelector("#chatList");
+let messageInput = document.querySelector(".messageInput");
+let messageSubmit = document.querySelector(".messageSubmit");
 let allMessages = [];
 
 function init() {
-    document.querySelector(".messageSubmit").addEventListener("click", function (e) {
+    messageSubmit.addEventListener("click", function (e) {
             e.preventDefault();
-            const message = document.querySelector(".messageInput").value;
+            const message = messageInput.value;
 
-            document.querySelector(".messageInput").value = "";
+            messageInput.value = "";
             let cmd = {"action": "chat", "message": message, "user": username};
             let cmdAsString = JSON.stringify(cmd);
             webSocket.send(cmdAsString);
@@ -23,6 +25,7 @@ let message;
 
 webSocket.addEventListener("open",
     e => {
+        displayChatMessage("<li>Welcome " + username +"!</li>")
         let message = {
             'action': 'username_' + username
         };
@@ -32,6 +35,11 @@ webSocket.addEventListener("open",
 
 webSocket.addEventListener("close",
     e => {
+        displayChatMessage("<li class='warningText'>" +
+            "<p>Connection to chat lost</p>" +
+            "</li>"
+        );
+
         console.log("websocket disconnected");
     });
 
@@ -40,22 +48,32 @@ webSocket.addEventListener("message",
         let jsonObject = JSON.parse(e.data);
         let action = jsonObject.action;
         let message = jsonObject.message;
-        let gameMessageString = "";
+        let user = jsonObject.user;
 
         switch (action) {
             case "chat":
-                allMessages.push("<li>" + jsonObject.user + ": " + message + "</li>");
-
-                for (let i in allMessages) {
-                    gameMessageString = gameMessageString + allMessages[i];
-                    chat.innerHTML = gameMessageString;
-                }
-                updateScroll();
+                displayChatMessage(message, user);
                 break;
         }
 
     }
 );
+
+const displayChatMessage = (message, user='') => {
+    let gameMessageString = "";
+
+    if (user !== '') {
+        allMessages.push("<li>" + user + ": " + message + "</li>");
+    } else {
+        allMessages.push(message);
+    }
+
+    for (let i in allMessages) {
+        gameMessageString = gameMessageString + allMessages[i];
+        chat.innerHTML = gameMessageString;
+    }
+    updateScroll();
+}
 
 function updateScroll(){
     chat.scrollTop = chat.scrollHeight;

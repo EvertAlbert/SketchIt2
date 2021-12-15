@@ -89,3 +89,7 @@ h3 {
 .joinButton:hover {
     background-color: #A88D00;
 }
+
+.warningText {
+    color:#FF0000;
+}
